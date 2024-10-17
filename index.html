@@ -1,226 +1,328 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographie interactive des compétences - Mise à jour</title>
-    <style>
-        /* Styles inchangés */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #1a1a2e;
-            color: #ffffff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .infographic {
-            width: 800px;
-            height: 800px;
-            position: relative;
-        }
-        .center-circle {
-            width: 200px;
-            height: 200px;
-            background-color: #16213e;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .center-circle:hover {
-            background-color: #1a1a2e;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-        .competence {
-            width: 120px;
-            height: 120px;
-            background-color: #0f3460;
-            border-radius: 50%;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .competence:hover {
-            background-color: #16213e;
-            box-shadow: 0 0 15px rgba(255,255,255,0.3);
-            transform: scale(1.1);
-        }
-        .detail {
-            display: none;
-            position: absolute;
-            background-color: #e94560;
-            border-radius: 10px;
-            padding: 15px;
-            width: 300px;
-            text-align: left;
-            font-size: 14px;
-            z-index: 10;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-        .detail h3 {
-            margin-top: 0;
-        }
-        .detail p {
-            margin-bottom: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- ===== CSS Files ===== -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/skins/color-1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- ====== Style Switcher ====== -->
+  <link rel="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1" disabled>
+  <link rel="stylesheet" href="css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
+  <link rel="stylesheet" href="css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
+  <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
+  <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
+  <link rel="stylesheet" href="css/style-switcher.css">
 </head>
 <body>
-    <div class="infographic">
-        <div class="center-circle" onclick="showAllCompetences()">
-            Compétences<br>PFC Ryad Tedjani
-        </div>
+  <!-- ===== Main Container Start ===== -->
+  <div class="main-container">
+    <!-- ===== Aside Start ===== -->
+    <div class="aside">
+      <div class="logo">
+        <a href="#home"><span>P</span>ortfolio</a>
+      </div>
+      <div class="nav-toggler">
+        <span></span>
+      </div>
+      <ul class="nav">
+        <li><a href="#home" class="active"><i class="fa fa-home"></i> Acceuil</a></li>
+        <li><a href="#about"><i class="fa fa-user"></i> A propos</a></li>
+        <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+        <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
+      </ul>
     </div>
-
-    <script>
-        const competences = [
-            { 
-                id: 'ac', 
-                title: 'Compétences AC', 
-                details: [
-                    { 
-                        code: 'AC34', 
-                        travail: 'Alternance : Développement d\'une apllication de gestion de prix',
-                        part: 'Initialisation du projet + Développement complet de l\'appi',
-                        justification: 'Portfolio'
-                    }
-                ]
-            },
-            { 
-                id: 'specialites', 
-                title: 'Compétences de spécialités', 
-                details: [
-                    { 
-                        code: 'AC34', 
-                        travail: 'SAE 501 : Application Mobile V360 Dispositif RA',
-                        part: 'Réalisation complète de l\'Application, Intégration d\'une fonctionnalité en réalité augmentée',
-                        justification: 'Portfolio'
-                    },
-                    { 
-                        code: 'AC34', 
-                        travail: 'Alternance : Création de maquette',
-                        part: 'Création de maquette pour l\'application sur figma',
-                        justification: 'Portfolio'
-                    },
-                    { 
-                        code: 'AC34', 
-                        travail: 'Dispositifs interactifs, Jeu runner',
-                        part: 'Le développement de mon jeu de run sur Unity, avec comme thème la nature, met en lumière cette compétence. Pour commencer, j\'ai intégré des mécaniques de course, des obstacles et des interactions dans le jeu, ce qui démontre ma capacité à créer des dispositifs interactifs. En utilisant le moteur Unity, j\'ai pu gérer des graphismes, des animations et des comportements de personnages. Cela met en évidence ma maîtrise des outils nécessaires pour développer des expériences interactives riches. Enfin, le thème de la nature ajoute un contexte immersif, rendant le jeu à la fois captivant et interactif.',
-                        justification: 'La découverte de nouvel outil de développement interactif'
-                    },
-                    { 
-                        code: 'AC35.01', 
-                        travail: 'Alternance : Pilotage d\'une application',
-                        part: 'Echanges de retours qualité entre le service et l\'équipe tech',
-                        justification: 'Portfolio'
-                    },
-                    { 
-                        code: 'AC35.02', 
-                        travail: 'Alternance : Suvi qualité d\'une application en relation avec le Service Relations Entreprise',
-                        part: 'Echanges de retours qualité entre le service et l\'équipe tech',
-                        justification: 'Portfolio'
-                    },
-                    { 
-                        code: 'AC35.03', 
-                        travail: 'SAE 501 : Création d\'une entreprise fictive Realia',
-                        part: 'Trouver le nom de l\'entreprise, sa forme juridique',
-                        justification: 'Portfolio'
-                    },
-                    { 
-                        code: 'AC35.04', 
-                        travail: 'SAE 501 : Soutenance de fin de projet',
-                        part: 'Dévoilement et explication du projet fait tout au long de l\'année',
-                        justification: 'Portfolio'
-                    }
-                ]
-            },
-            { 
-                id: 'metiers', 
-                title: 'Compétences Métiers', 
-                details: [
-                    { 
-                        code: '', 
-                        travail: '',
-                        part: '',
-                        justification: ''
-                    }
-                ]
-            }
-        ];
-
-        function createCompetenceCircles() {
-            const infographic = document.querySelector('.infographic');
-            const centerX = 400;
-            const centerY = 400;
-            const radius = 300;
-
-            competences.forEach((competence, index) => {
-                const angle = (index / competences.length) * 2 * Math.PI;
-                const x = centerX + radius * Math.cos(angle) - 60;
-                const y = centerY + radius * Math.sin(angle) - 60;
-
-                const circle = document.createElement('div');
-                circle.className = 'competence';
-                circle.style.left = `${x}px`;
-                circle.style.top = `${y}px`;
-                circle.textContent = competence.title;
-                circle.onclick = () => showDetails(competence, x, y);
-
-                infographic.appendChild(circle);
-            });
-        }
-
-        function showDetails(competence, x, y) {
-            const existingDetail = document.querySelector('.detail');
-            if (existingDetail) {
-                existingDetail.remove();
-            }
-
-            const detail = document.createElement('div');
-            detail.className = 'detail';
-            detail.style.left = `${x + 60}px`;
-            detail.style.top = `${y + 60}px`;
-
-            let content = `<h3>${competence.title}</h3>`;
-            competence.details.forEach(item => {
-                content += `<p><strong>${item.code}</strong></p>`;
-                content += `<p>Travail choisi: ${item.travail}</p>`;
-                content += `<p>Ma part: ${item.part}</p>`;
-                content += `<p>Justification: ${item.justification}</p>`;
-                content += '<hr>';
-            });
-
-            detail.innerHTML = content;
-            document.querySelector('.infographic').appendChild(detail);
-            detail.style.display = 'block';
-        }
-
-        function showAllCompetences() {
-            const circles = document.querySelectorAll('.competence');
-            circles.forEach(circle => {
-                circle.style.display = circle.style.display === 'none' ? 'flex' : 'none';
-            });
-        }
-
-        createCompetenceCircles();
-    </script>
+    <!-- ===== Aside End ===== -->
+    <!-- ===== Main Content Start ===== -->
+    <div class="main-content">
+      <!-- ===== Home Section Start ===== -->
+      <section class="home active section" id="home"> 
+        <div class="container">
+          <div class="row">
+            <div class="home-info padd-15">
+              <h3 class="hello">Bonjour, Je m'appelle <span class="name">Ryad Tedjani</span></h3>
+              <h3 class="my-profession">je suis étudiant en 3ème année de  <span class="typing">web designer</span></h3>
+              <p>Je suis en troisième année de BUT Métiers du Multimédia et de l'Internet (MMI), une formation polyvalentedevel couvrant la communication, le design, 
+                le développement web, et la gestion de projets numériques.</p>
+              <a href="../CV_Ryad.pdf" class="btn" download="CV_Ryad.pdf">Download CV</a>
+            </div>
+            <div class="home-img padd-15">
+              <img src="#" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== Home Section End ===== -->
+      <!-- ===== About Section Start ===== -->
+      <section class="about section" id="about"> 
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>A propos de moi</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="about-content padd-15">
+              <div class="row">
+                <div class="about-text padd-15">
+                  <h3>Je suis Ryad TEDJANI et je suis <span>Apprenti développeur web</span></h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="personal-info padd-15">
+                  <div class="row">
+                    <div class="info-item padd-15">
+                      <p>Naissance : <span>13 fev 2002</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Age : <span>22</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Email : <span>ibryadtedjani@gmail.com</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>téléphone : <span>06.95.17.05.87</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Ville : <span>Aulnay sous bois</span></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="buttons padd-15">
+                      <a href="#contact" data-section-index="1" class="btn hire-me">Contactez moi</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="skills padd-15">
+                  <div class="row">
+                    <div class="skill-item padd-15">
+                      <h5>React js</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 70%;"></div>
+                        <div class="skill-percent">70%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>NextJS</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 60%;"></div>
+                        <div class="skill-percent">60%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>HTML</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 96%;"></div>
+                        <div class="skill-percent">96%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>Java</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 70%;"></div>
+                        <div class="skill-percent">70%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>CSS</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 90%;"></div>
+                        <div class="skill-percent">90%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="education padd-15">
+                  <h3 class="title">Formation</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- ===== timeline item ===== -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> 2019-2020
+                          </h3>
+                          <h4 class="timeline-title">Baccalauréat S</h4>
+                          <p class="timeline-text">Lycée Marcel Cachin, Saint-Ouen</p>
+                        </div>
+                             <!-- ===== timeline item ===== -->
+                             <div class="timeline-item">
+                              <div class="circle-dot"></div>
+                              <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> 2021-2023
+                              </h3>
+                              <h4 class="timeline-title">BTS Services Informatiques aux Orgnisation (SIO) option Solution Logissielles et Application Métiers (SLAM)</h4>
+                              <p class="timeline-text"></p>
+                            </div>
+                                 <!-- ===== timeline item ===== -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> 2023-2024
+                          </h3>
+                          <h4 class="timeline-title">BUT Méties du Multimédia et de l'Internet (MMI)</h4>
+                          <p class="timeline-text"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="experience padd-15">
+                  <h3 class="title">Experience</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- ===== timeline item ===== -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> Juin 2022
+                          </h3>
+                          <h4 class="timeline-title">Stage de fin d'année en entreprise</h4>
+                          <p class="timeline-text">J'ai effectué un stage à la fin de ma première année de BTS dans l'entreprise Joza IT où j'ai pu accompagné les développeurs dans leurs travaux de conception et de développement de leurs logicielles et solution applicative </p>
+                        </div>
+                             <!-- ===== timeline item ===== -->
+                             <div class="timeline-item">
+                              <div class="circle-dot"></div>
+                              <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> 2022 - 2023
+                              </h3>
+                              <h4 class="timeline-title">Alternance Joza IT</h4>
+                              <p class="timeline-text">
+                                Dans le cadre de mon BTS, j'ai effectué ma deuxième année en alternance au sein de la même entreprise que pour mon stage. Cette expérience m'a permis de participer davantage aux tâches des développeurs et d'assumer des responsabilités accrues.</p>
+                            </div>
+                                 <!-- ===== timeline item ===== -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> 2023 - 2024
+                          </h3>
+                          <h4 class="timeline-title">Alternance Atixis</h4>
+                          <p class="timeline-text">Par la suite, j'ai intégré une troisième année de Bachelor en alternance, que j'ai effectuée au sein de l'entreprise Atixis. Cette expérience m'a permis d'approfondir mes compétences en tant que développeur.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== About Section End ===== -->
+      <!-- ===== Services Section Start ===== -->
+      <section class="service section" id="services">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Services</h2>
+            </div>
+          </div>
+          <div class="row">
+            <!-- ===== Service item Start ====== -->
+            <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon">
+                  <i class="fa fa-mobile-alt"></i>
+                </div>
+                <h4>Développeur Mobile</h4>
+              </div>
+            </div>
+            <!-- ===== Service item End ====== -->
+             <!-- ===== Service item Start ====== -->
+             <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon">
+                  <i class="fa fa-laptop-code"></i>
+                </div>
+                <h4>Développeur Web</h4>
+              </div>
+            </div>
+            <!-- ===== Service item End ====== -->
+             <!-- ===== Service item Start ====== -->
+             <div class="service-item padd-15">
+              <div class="service-item-inner">
+                <div class="icon">
+                  <i class="fa fa-palette"></i>
+                </div>
+                <h4>Web Design</h4>
+              </div>
+            </div>
+            <!-- ===== Service item End ====== -->
+          </div>
+        </div>
+      </section>
+      <!-- ===== Services Section End ===== -->
+      <!-- ===== Portfolio Section Start ===== -->
+     
+      <!-- ===== Portfolio Section End ===== -->
+      <!-- ===== Contact Section Start ===== -->
+      <section class="contact section" id="contact">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Contacter moi</h2>
+            </div>
+          </div>
+          <h3 class="contact-title padd-15">Si vous avez des question</h3>
+          <h4 class="contact-sub-title padd-15">Je suis là pour y répondre</h4>
+          <div class="row">
+            <!-- ===== Contact info item start ====== -->
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-phone"></i></div>
+              <h4>téléphone</h4>
+              <p>06 95 17 05 87</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+            <!-- ===== Contact info item end ====== -->
+             <!-- ===== Contact info item start ====== -->
+             <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-envelope"></i></div>
+              <h4>Email</h4>
+              <p>ibryadtedjani@gmail.com</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+             <!-- ===== Contact info item start ====== -->
+             <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-globe-europe"></i></div>
+              <h4>Website</h4>
+              <p>www.domain.com</p>
+            </div>
+            <!-- ===== Contact info item end ====== -->
+          </div>
+          
+      <!-- ===== Contact Section End ===== -->
+    </div>
+    <!-- ===== Main Content End ===== -->
+  </div>
+  <!-- ===== Main Container End ===== -->
+  <!-- ===== Style Switcher Start ===== -->
+  <div class="style-switcher">
+    <div class="style-switcher-toggler s-icon">
+      <i class="fas fa-cog fa-spin"></i>
+    </div>
+    <div class="day-night s-icon">
+      <i class="fas "></i>
+    </div>
+    <h4>Theme Colors</h4>
+    <div class="colors">
+      <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+      <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+      <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+      <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+      <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+    </div>
+  </div>
+  <!-- ===== Style Switcher End ===== -->
+  <!-- ===== JS Files ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
+  <script src="js/script.js"></script>
+  <script src="js/style-switcher.js"></script>
 </body>
 </html>
